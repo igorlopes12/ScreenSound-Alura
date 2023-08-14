@@ -3,7 +3,7 @@ string mensagemDeBoasVindas = "Boas vindas ao Screen Sound";
 //List<string> listaDasBandas = new List<string> { "U2", "The Beatles", "Calypso" };
 Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>();
 
-bandasRegistradas.Add("Linkin Park", new List<int> { 10, 8, 6});
+bandasRegistradas.Add("Linkin Park", new List<int> { 10, 8, 6 });
 bandasRegistradas.Add("The Beatles", new List<int>());
 void ExibirLogo()
 {
@@ -93,7 +93,7 @@ void MostrarBandasRegistradas()
 void ExibirTituloDaOpcao(string titulo)
 {
     int quantidadeDeLetras = titulo.Length;
-    string asteriscos = string.Empty.PadLeft(quantidadeDeLetras,'*');
+    string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
     Console.WriteLine(asteriscos);
     Console.WriteLine(titulo);
     Console.WriteLine(asteriscos + "\n");
@@ -116,7 +116,7 @@ void AvaliarUmaBanda()
         bandasRegistradas[nomeDaBanda].Add(nota);
         Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}");
         Thread.Sleep(2000);
-        Console.Clear() ;
+        Console.Clear();
         ExibirOpcoesDoMenu();
     }
     else
@@ -127,31 +127,42 @@ void AvaliarUmaBanda()
         Console.Clear();
         ExibirOpcoesDoMenu();
     }
-          
- }
+
+}
 
 void mediaDaBanda()
 {
     Console.Clear();
     ExibirTituloDaOpcao("Média das avaliações da Banda");
     Console.Write("Digite a banda para saber a média das avaliações: ");
-    string  nomeDaBanda = Console.ReadLine()!;
+    string nomeDaBanda = Console.ReadLine()!;
 
-    if (bandasRegistradas.ContainsKey (nomeDaBanda!))
+    if (bandasRegistradas.ContainsKey(nomeDaBanda!))
     {
+        var notasDaBanda = bandasRegistradas[nomeDaBanda];
+
+        int total = 0;
+
+        for (int i = 0; i < notasDaBanda.Count; i++)
+        {
+            total += notasDaBanda[i];
+        }
+        double media = total / notasDaBanda.Count;
+
+        Console.WriteLine($"A média das notas da banda {nomeDaBanda} é {media}");
 
     }
     else
     {
-            Console.WriteLine($"\n A banda {nomeDaBanda} não foi encontrada.");
-            Console.WriteLine("Digite ma tecla para voltar ao menu principal.");
-            Console.ReadKey();
-            Console.Clear();
-            ExibirOpcoesDoMenu();
+        Console.WriteLine($"\n A banda {nomeDaBanda} não foi encontrada.");
+        Console.WriteLine("Digite ma tecla para voltar ao menu principal.");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirOpcoesDoMenu();
 
 
-        }
     }
+}
 
 
 
